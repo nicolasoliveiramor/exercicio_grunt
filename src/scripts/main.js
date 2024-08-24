@@ -1,30 +1,32 @@
 document.addEventListener('DOMContentLoaded', function() {
-    document.getElementById('form').addEventListener('submit', function(evento) {
-        evento.preventDefault();
+    document.addEventListener('submit', function(e){
+        e.preventDefault()
+            const num1 = document.getElementById('num-1')
+            const num2 = document.getElementById('num-2')
+            const resultValor = document.getElementById('valor-resultado')
         
-        const primeiroNum = parseFloat(document.getElementById('num-1').value)
-        const segundoNum = parseFloat(document.getElementById('num-2').value)
-
-        document.getElementById('soma').addEventListener('click', function(){
-            resultado = primeiroNum + segundoNum
-        })
-        document.getElementById('sub').addEventListener('click', function(){
-            resultado = primeiroNum - segundoNum
-        })
-        document.getElementById('multi').addEventListener('click', function(){
-            resultado = primeiroNum * segundoNum
+            document.getElementById('soma').addEventListener('click', function() {
+                const soma = parseFloat(num1.value) + parseFloat(num2.value)
+                resultValor.textContent = soma
+            })
         
+            document.getElementById('sub').addEventListener('click', function() {
+                const sub = parseFloat(num1.value) - parseFloat(num2.value)
+                resultValor.textContent = sub
+            })
+        
+            document.getElementById('multi').addEventListener('click', function() {
+                const multi = parseFloat(num1.value) * parseFloat(num2.value)
+                resultValor.textContent = multi
+            })
+        
+            document.getElementById('div').addEventListener('click', function() {
+                if (parseFloat(num2.value) === 0) {
+                    resultValor.textContent = '0'
+            } else {
+                const div = parseFloat(num1.value) / parseFloat(num2.value)
+                resultValor.textContent = div
+            }
         })
-        document.getElementById('div').addEventListener('click', function(){
-            resultado = primeiroNum / segundoNum
-        })
-
-        if(primeiroNum === 0 && segundoNum === 0) {
-            alert('Impossível calcular 0!')
-            document.getElementById('num-1').value = ''
-            document.getElementById('num-2').value = ''
-        } else {
-            document.getElementById('valor-resultado').innerText = resultado
-        }
-    });
-});
+    })
+})
